@@ -1,0 +1,14 @@
+<%- include('partials/header'); %>
+<h1><%= title %></h1>
+
+<div>
+  <% if (docs) { %>
+    <p>Found <%= docs.length %> match(es)</p>
+    <ul class="list-group">
+      <% for (doc of docs) { %>
+        <li class="list-group-item"><a href="/restaurants/<%= doc._id %>"><%= doc.name %></a></li>
+      <% } %>
+    </ul>
+  <% } %>
+</div>
+<%- include('partials/footer'); %>

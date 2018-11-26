@@ -1,0 +1,55 @@
+<%- include('../partials/header'); %>
+
+<ul class="list-group">
+  <% for (var prop in restaurant) { %>
+
+    <% if (prop === 'photo') { %>
+      <li class="list-group-item"><img src="data:<%= restaurant.photo.mimetype %>;base64,<%= restaurant.photo.base64 %>"
+          alt=""></li>
+    <% } else if (prop === 'address') { %>
+      <li class="list-group-item">
+        <b>Address</b>
+        <ul>
+          <li class="list-group-item"><b>Street:</b>
+            <%= restaurant.address.street %>
+          </li>
+          <li class="list-group-item"><b>Building:</b>
+            <%= restaurant.address.building %>
+          </li>
+          <li class="list-group-item"><b>Zipcode:</b>
+            <%= restaurant.address.zipcode %>
+          </li>
+          <li class="list-group-item"><b>Coord:</b>
+            <% let lat = restaurant.address.coord[0], lon = restaurant.address.coord[1] %>
+            <%= lat %>, <%= lon %>
+            <% if (lat && lon) { %>
+              <a href="/map?lat=<%= lat %>&lon=<%= lon %>&zoom=18">Map</a>
+            <% } %>
+          </li>
+        </ul>
+      </li>
+    <% } else if (prop === 'grades') { %>
+      <li class="list-group-item"><b>Grades:</b>
+        <ol>
+          <% for (var grade of restaurant.grades) { %>
+            <li class="list-group-item">
+              <%= grade.score %> (<%= grade.username %>)</li>
+          <% } %>
+        </ol>
+      </li>
+    <% } else { %>
+      <li class="list-group-item">
+        <b><%= prop %>:</b>
+        <%= restaurant[prop] %>
+      </li>
+    <% } %>
+  <% } %>
+</ul>
+
+<div>
+  <a class="btn btn-primary" href="/restaurants/<%= restaurant._id %>/edit" role="button">Edit</a>
+  <a class="btn btn-primary" href="/restaurants/<%= restaurant._id %>/rate" role="button">Rate</a>
+  <a class="btn btn-primary" href="/restaurants/<%= restaurant._id %>/delete" role="button">Delete</a>
+</div>
+
+<%- include('../partials/footer'); %>

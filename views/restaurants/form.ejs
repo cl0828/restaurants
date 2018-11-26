@@ -1,0 +1,62 @@
+<form action="/restaurants/<%= action %>" method="post" enctype="multipart/form-data">
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Restaurant_id</label>
+    <input type="text" class="form-control" id="restaurant_id" name="restaurant_id" value="<%= restaurant.restaurant_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" value="<%= restaurant.name %>" required>
+  </div>
+
+  <div class="form-group">
+    <label for="borough">Borough</label>
+    <input type="text" class="form-control" id="borough" name="borough" value="<%= restaurant.borough %>">
+  </div>
+
+  <div class="form-group">
+    <label for="cuisine">Cuisine</label>
+    <input type="text" class="form-control" id="cuisine" name="cuisine" value="<%= restaurant.cuisine %>">
+  </div>
+
+  <div class="form-group">
+    <label for="photo">Photo</label>
+    <input type="file" class="form-control-file" id="photo" name="photo">
+  </div>
+
+  <div class="form-group">
+    Address
+  </div>
+
+  <div class="form-group">
+    <label for="street">Street</label>
+    <input type="text" class="form-control" id="street" name="address[street]" value="<%= restaurant.address ? restaurant.address.street: '' %>">
+  </div>
+
+  <div class="form-group">
+    <label for="building">Building</label>
+    <input type="text" class="form-control" id="building" name="address[building]" value="<%= restaurant.address ? restaurant.address.building: '' %>">
+  </div>
+
+  <div class="form-group">
+    <label for="zipcode">Zipcode</label>
+    <input type="text" class="form-control" id="zipcode" name="address[zipcode]" value="<%= restaurant.address ? restaurant.address.zipcode: '' %>">
+  </div>
+
+  <div class="form-group">
+    Coordinate
+  </div>
+
+  <div class="form-group">
+    <label for="Latitude">Latitude</label>
+    <input type="number" class="form-control" step="any" id="Latitude" name="address[coord]" value="<%= restaurant.address ? restaurant.address.coord[0]: '' %>">
+  </div>
+
+  <div class="form-group">
+    <label for="Longitude">Longitude</label>
+    <input type="number" class="form-control" step="any" id="Longitude" name="address[coord]" value="<%= restaurant.address ? restaurant.address.coord[1]: '' %>">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
