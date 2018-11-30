@@ -93,6 +93,11 @@ router.get('/:_id/rate', authGuard, function (req, res, next) {
 });
 
 router.post('/:_id/rate', authGuard, objectIDParser, function (req, res, next) {
+  // server-side score validation
+  if (!req.body.score || !(req.body.score > 0 && req.body.score <= 10) ) {
+    return res.send("must be score > 0 and score <= 10");
+  }
+
   const criteria = {};
   criteria['_id'] = req.params._id;
   criteria['grades.username'] = req.session.username;
