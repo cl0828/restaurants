@@ -17,7 +17,7 @@ router.post('/create', authGuard, multerUpload.single('photo'), function (req, r
   }
   const restaurant = req.body;
   restaurant.owner = req.session.username;
-  if (req.file && req.file.mimetype.indexOf('image' >= 0)) {
+  if (req.file && req.file.mimetype.indexOf('image') >= 0) {
     restaurant.photo = {};
     restaurant.photo.base64 = req.file.buffer.toString('base64');
     restaurant.photo.mimetype = req.file.mimetype;
@@ -74,7 +74,7 @@ router.post('/:_id/edit', authGuard, multerUpload.single('photo'), objectIDParse
           res.status(403).send('403 Forbidden');
         } else {
           const restaurantNew = req.body;
-          if (req.file && req.file.mimetype.indexOf('image' >= 0)) {
+          if (req.file && req.file.mimetype.indexOf('image') >= 0) {
             restaurantNew.photo = {};
             restaurantNew.photo.base64 = req.file.buffer.toString('base64');
             restaurantNew.photo.mimetype = req.file.mimetype;

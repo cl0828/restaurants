@@ -17,7 +17,7 @@ router.post('/restaurant/create', multerUpload.single('photo'), function (req, r
       const user = docs[0];
       const restaurant = req.body;
       restaurant.owner = user.username;
-      if (req.file && req.file.mimetype.indexOf('image' >= 0)) {
+      if (req.file && req.file.mimetype.indexOf('image') >= 0) {
         restaurant.photo = {};
         restaurant.photo.base64 = req.file.buffer.toString('base64');
         restaurant.photo.mimetype = req.file.mimetype;
